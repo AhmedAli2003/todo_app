@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -13,4 +15,21 @@ class AppColors {
   static const Color kYellow = Color(0xFFf9f900);
   static const Color kBkLight = Color(0x58797777);
   static const Color kGreyBk = Color(0xFF202c33);
+
+  static const List<Color> _colorsForRandomSelection = [
+    kBlueLight,
+    kGreen,
+    kRed,
+    kYellow,
+    kGreyBk,
+    kLight,
+    kBkDark,
+  ];
+
+  static final Random _random = Random();
+
+  static Color getRandomColor() {
+    final randomIndex = _random.nextInt(_colorsForRandomSelection.length);
+    return _colorsForRandomSelection[randomIndex];
+  }
 }

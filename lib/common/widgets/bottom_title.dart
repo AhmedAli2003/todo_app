@@ -9,8 +9,14 @@ import 'package:todo_app/common/widgets/width_spacer.dart';
 class BottomTitle extends StatelessWidget {
   final String text;
   final String text2;
-  
-  const BottomTitle({super.key, required this.text, required this.text2});
+  final Color? barColor;
+
+  const BottomTitle({
+    super.key,
+    required this.text,
+    required this.text2,
+    this.barColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,29 +28,33 @@ class BottomTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Consumer(
-              builder: (context, ref, child) => Container(
+              builder: (context, ref, child) => child!,
+              child: Container(
                 height: 80,
                 width: 5,
                 decoration: BoxDecoration(
-                  //TODO: Make the color dynamic
-                  color: AppColors.kGreen,
+                  color: barColor ?? AppColors.getRandomColor(),
                   borderRadius: BorderRadius.circular(kRadius),
                 ),
               ),
             ),
-            const WidthSpacer(15),
+            const WidthSpacer(16),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ReusableText(
                     text,
                     style: appStyle(24, AppColors.kLight, FontWeight.bold),
                   ),
                   const HeightSpacer(10),
-                  ReusableText(
-                    text2,
-                    style: appStyle(12, AppColors.kLight, FontWeight.normal),
+                  LimitedBox(
+                    maxWidth: kWidth * 0.65,
+                    child: ReusableText(
+                      text2,
+                      style: appStyle(12, AppColors.kLight, FontWeight.normal),
+                    ),
                   ),
                 ],
               ),

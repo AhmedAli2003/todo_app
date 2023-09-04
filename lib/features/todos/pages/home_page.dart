@@ -9,6 +9,7 @@ import 'package:todo_app/common/widgets/custom_text_field.dart';
 import 'package:todo_app/common/widgets/height_spacer.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/width_spacer.dart';
+import 'package:todo_app/features/todos/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -159,6 +160,30 @@ class _HomePageState extends ConsumerState<HomePage> with SingleTickerProviderSt
                       Container(
                         color: AppColors.kBkLight,
                         height: kHeight * 0.33,
+                        child: ListView(
+                          children: [
+                            TodoTile(
+                              title: 'Go to the gym',
+                              description: 'i must go and train tomorrow, ssdwa',
+                              start: '03:00 am',
+                              end: '10:00 pm',
+                              switcher: Switch.adaptive(
+                                value: true,
+                                onChanged: (val) {},
+                              ),
+                            ),
+                            TodoTile(
+                              title: 'Go to the gym',
+                              description: 'i must go and train tomorrow, ssdwa',
+                              start: '03:00 am',
+                              end: '10:00 pm',
+                              switcher: Switch.adaptive(
+                                value: true,
+                                onChanged: (val) {},
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         color: AppColors.kGreen,
@@ -169,7 +194,17 @@ class _HomePageState extends ConsumerState<HomePage> with SingleTickerProviderSt
                 ),
               ),
               const HeightSpacer(20),
-              const CustomExpansionTile(),
+              const CustomExpansionTile(
+                text: 'Tomorrow\'s Tasks',
+                text2: 'I must go to the gym at 4pm and play chest training',
+                children: [],
+              ),
+              const HeightSpacer(20),
+              CustomExpansionTile(
+                text: DateTime.now().add(const Duration(days: 2)).toIso8601String().substring(0, 10),
+                text2: 'I must go to the gym at 4pm and play chest training',
+                children: [],
+              ),
             ],
           ),
         ),
